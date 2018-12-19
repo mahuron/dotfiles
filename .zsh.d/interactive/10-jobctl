@@ -1,0 +1,5 @@
+# -*- mode: sh; -*-
+
+# Don't exit shell on ^d
+setopt ignoreeof
+

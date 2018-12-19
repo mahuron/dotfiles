@@ -1,0 +1,7 @@
+# -*- mode: sh; -*-
+
+# Favor using emacsclient to launch emacs server process rather than
+# emacs itself.  Doing so makes it difficult to accidently close the
+# server.
+
+alias edit='emacsclient --alternate-editor="" --tty'

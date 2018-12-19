@@ -1,0 +1,8 @@
+# -*- mode: sh; -*-
+source-dir() {
+    # recursively source all files with exec bit set
+    setopt local_options extendedglob nullglob
+    for f in $1/**/*(nx^/); do
+	. ${f}
+    done
+}

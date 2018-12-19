@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+
+autoload -U compinit
+compinit
+
+

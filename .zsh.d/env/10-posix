@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+
+export PAGER='less'
+export VISUAL='edit'
+export EDITOR=${VISUAL}
+

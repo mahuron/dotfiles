@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+
+CONFIGDIR=${HOME}/.cfg
+autoload -U config-init
+config-init
+

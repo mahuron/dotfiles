@@ -1,0 +1,16 @@
+# -*- mode: sh; -*-
+
+if [ -f ${HOME}/.dircolors ]; then
+    eval $(dircolors ${HOME}/.dircolors)
+fi
+
+alias ls='ls --color=auto --classify'
+alias ll='ls -l --group-directories-first'
+
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+setopt autocd
+
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+alias dh='dirs -v'
