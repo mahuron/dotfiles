@@ -1,8 +1,12 @@
 # -*- mode: sh; -*-
 source-dir() {
     # recursively source all files with exec bit set
-    setopt local_options extendedglob nullglob
+    eg=$options[extended_glob]
+    ng=$options[null_glob]
+    setopt extended_glob null_glob
     for f in $1/**/*(nx^/); do
 	. ${f}
     done
+    options[extended_glob]=$eg
+    options[null_glob]=$ng
 }
