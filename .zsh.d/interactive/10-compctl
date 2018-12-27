@@ -1,6 +1,10 @@
 # -*- mode: sh; -*-
 
 autoload -U compinit
-compinit
+
+CACHE=~/.cache/zsh
+[ -d ${CACHE} ] || mkdir -p ${CACHE}
+
+compinit -d ${CACHE}/zcompdump-${ZSH_VERSION}
 
 
