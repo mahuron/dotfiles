@@ -5,5 +5,22 @@ config-init() {
     if ! config status > /dev/null 2>&1; then
 	git init --bare $(config-dir)
 	config config --local status.showUntrackedFiles no
+	cat <<EOF
+# Optional next steps:
+#
+# fetch existing repo
+$ config remote add -t <branch> origin <url>
+$ config fetch
+
+# determine which, if any, local files conflict with those in the repo
+$ config pull
+
+# overwrite all files with repo versions
+$ config reset --hard origin/<branch>
+
+# overwrite a single file with repo version
+$ config checkout origin/<branch> <file>
+
+EOF
     fi
 }
