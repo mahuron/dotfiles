@@ -1,0 +1,5 @@
+# -*- mode: sh; -*-
+config() {
+    autoload config-dir
+    git --git-dir=$(config-dir) --work-tree=${HOME} $*
+}

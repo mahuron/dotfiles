@@ -1,9 +1,9 @@
 # -*- mode: sh; -*-
 config-init() {
-    cgit='git --git-dir=${CONFIGDIR} --work-tree=${HOME}'
-    if [ ! -d ${CONFIGDIR} ]; then
-	git init --bare ${CONFIGDIR}
-	eval ${cgit} config --local status.showUntrackedFiles no
+    autoload config
+    autoload config-dir
+    if ! config status > /dev/null 2>&1; then
+	git init --bare $(config-dir)
+	config config --local status.showUntrackedFiles no
     fi
-    alias config=${cgit}
 }
