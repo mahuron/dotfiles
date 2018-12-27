@@ -34,6 +34,7 @@
 (setq inhibit-startup-screen t)
 (menu-bar-mode -1)
 
+;;; Theme
 (defun set-background-for-terminal (&optional frame)
   (or frame (setq frame (selected-frame)))
   "unsets the background color in terminal mode"
@@ -42,15 +43,13 @@
 (add-hook 'after-make-frame-functions 'set-background-for-terminal)
 (add-hook 'window-setup-hook 'set-background-for-terminal)
 
-
 (use-package base16-theme
   :ensure t
   :init
   (setq base16-theme-256-color-source "colors")
   :config
   (require 'base16-material-darker-theme)
-  (load-theme 'base16-material-darker t)
-  )
+  (load-theme 'base16-material-darker t))
 
 ;;; Backup and version control
 (setq make-backup-files nil)
