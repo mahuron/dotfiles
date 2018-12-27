@@ -3,7 +3,7 @@ config-dir() {
     local dir
     if [ $# -eq 1 ] && [ -d $1 ]; then
 	dir=$1
-    elif [ -d ${CONFIGDIR} ]; then
+    elif [ -n "${CONFIGDIR}" ]; then
 	dir=${CONFIGDIR}
     else;
 	dir=${HOME}/.cfg
