@@ -1,4 +1,6 @@
 ---
 title: dotfiles in git
 ---
-{{site.url}}{{site.baseurl}}/bootstrap
+```bash
+. <({{site.url}}{{site.baseurl}}/bootstrap)
+```
