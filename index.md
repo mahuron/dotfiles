@@ -1,6 +1,4 @@
 ---
 title: dotfiles in git
 ---
-{{site.url}}
-{{page.url}}
-{{site.baseurl}}
+{{site.url}}{{site.baseurl}}/bootstrap
