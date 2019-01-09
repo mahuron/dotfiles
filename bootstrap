@@ -1,0 +1,45 @@
+#!/bin/bash
+
+: ${BRANCH:=master}
+: ${REMOTE:=git@github.com:mahuron/dotfiles.git}
+: ${CONFIGDIR:=.cfg}
+: ${CONFIGPATH:=${HOME}/${CONFIGDIR}}
+: ${GITIGNORE:=${HOME}/.gitignore}
+
+config() {
+  git --git-dir=${CONFIGPATH} --work-tree=${HOME} $*
+}
+
+config-exists() {
+  config status > /dev/null 2>&1
+}
+
+# avoid recursion
+grep -qxF ${CONFIGDIR} ${GITIGNORE} || echo ${CONFIGDIR} >> ${GITIGNORE}
+
+# clone remote repo if needed
+if ! config-exists; then
+  git clone --bare ${REMOTE} ${CONFIGDIR}
+  config config --local status.showUntrackedFiles no
+  config reset -q
+fi
+
+cat <<_EOF
+A working local repo exists.  Additional steps may be required before local and remote are in sync.
+
+# Compare local to remote.
+$ config status
+
+# Check out missing file
+$ config checkout -- <file>
+
+# Discard all local files in favor of remote
+$ config checkout -- .
+
+# Check diff between local and remote
+$ config diff -- <file>
+_EOF
+
+# maintain CONFIGPATH for config()
+unset BRANCH REMOTE CONFIGDIR GITIGNORE
+
