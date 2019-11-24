@@ -1,4 +1,5 @@
-SDK_DIR=${HOME}/local/opt/google-cloud-sdk
+SDK_DIR=${HOME}/Applications/google-cloud-sdk
+export CLOUDSDK_PYTHON=$(which python3)
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ${SDK_DIR}/path.zsh.inc ]; then . ${SDK_DIR}/path.zsh.inc; fi

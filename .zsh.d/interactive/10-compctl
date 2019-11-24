@@ -2,9 +2,12 @@
 
 autoload -U compinit
 
-CACHE=~/.cache/zsh
-[ -d ${CACHE} ] || mkdir -p ${CACHE}
+COMPDIR=${ZDOTDIR}/completion
+[ -d ${COMPDIR} ] || mkdir -p ${COMPDIR}
+fpath=(${COMPDIR} $fpath)
 
-compinit -d ${CACHE}/zcompdump-${ZSH_VERSION}
+CACHEDIR=~/.cache/zsh
+[ -d ${CACHEDIR} ] || mkdir -p ${CACHEDIR}
 
+compinit -d ${CACHEDIR}/zcompdump-${ZSH_VERSION}
 

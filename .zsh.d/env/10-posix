@@ -1,5 +1,9 @@
 # -*- mode: sh; -*-
 
+# IEEE 1003.1-2000 A.8
+
+typeset -Ux path
+
 export PAGER='less'
 export VISUAL='edit'
 export EDITOR=${VISUAL}
