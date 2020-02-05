@@ -1,4 +1,4 @@
 typeset -U fpath
 fpath=(${ZDOTDIR}/functions $fpath)
-autoload source-dir
+autoload -Uz ${ZDOTDIR}/functions/*(.)
 source-dir ${ZDOTDIR}/env
