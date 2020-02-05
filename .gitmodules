@@ -1,0 +1,6 @@
+[submodule ".zsh.d/lib/powerlevel10k"]
+	path = .zsh.d/lib/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".zsh.d/lib/base16-shell"]
+	path = .zsh.d/lib/base16-shell
+	url = https://github.com/chriskempson/base16-shell.git
