@@ -35,24 +35,49 @@
 (menu-bar-mode -1)
 
 ;;; Theme
-(defun set-background-for-terminal (&optional frame)
+(defun after-load-theme-hook nil
+  "Hook run after a theme is loaded via `load-theme'.")
+(defadvice load-theme (after run-after-load-theme-hook activate)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+
+(defun set-background-to-unspecified (&optional frame)
   (or frame (setq frame (selected-frame)))
   "unsets the background color in terminal mode"
   (unless (display-graphic-p frame)
-    (set-face-background 'default nil frame)))
-(add-hook 'after-make-frame-functions 'set-background-for-terminal)
-(add-hook 'window-setup-hook 'set-background-for-terminal)
+    (set-face-background 'default "unspecified-bg" frame)))
+
+(add-hook 'after-make-frame-functions 'set-background-to-unspecified)
+(add-hook 'window-setup-hook 'set-background-to-unspecified)
+(add-hook 'after-load-theme-hook 'set-background-to-unspecified)
+
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
 
 (use-package base16-theme
   :ensure t
   :init
-  (setq base16-theme-256-color-source "colors")
+  (setq base16-theme-256-color-source 'base16-shell)
   :config
-  (require 'base16-material-darker-theme)
-  (load-theme 'base16-material-darker t))
+  (load-theme 'base16-default-dark t))
 
 ;;; Backup and version control
 (setq make-backup-files nil)
 
 (use-package magit
   :ensure t)
+
+(use-package counsel
+  :ensure t
+  :init
+  (ivy-mode)
+  (counsel-mode)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d)")
+  :bind (("C-s" . 'swiper-isearch)
+	 ("C-r" . 'swiper-isearch-backward))
