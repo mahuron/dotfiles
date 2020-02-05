@@ -1,5 +1,4 @@
 # -*- mode: sh; -*-
 
 export CONFIGDIR=${HOME}/.cfg
-autoload -U config
 
