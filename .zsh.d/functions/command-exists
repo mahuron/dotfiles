@@ -1,0 +1,4 @@
+# -*- mode: sh; -*-
+command-exists() {
+    whence -p $1 > /dev/null
+}
