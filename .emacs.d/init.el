@@ -34,6 +34,9 @@
 (setq inhibit-startup-screen t)
 (menu-bar-mode -1)
 
+;;; Backup and version control
+(setq make-backup-files nil)
+
 ;;; Theme
 (defun after-load-theme-hook nil
   "Hook run after a theme is loaded via `load-theme'.")
@@ -65,9 +68,6 @@
   :config
   (load-theme 'base16-default-dark t))
 
-;;; Backup and version control
-(setq make-backup-files nil)
-
 (use-package magit
   :ensure t)
 
@@ -79,5 +79,22 @@
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d)")
-  :bind (("C-s" . 'swiper-isearch)
-	 ("C-r" . 'swiper-isearch-backward))
+  :bind (("C-s" . swiper-isearch)
+		 ("C-r" . swiper-isearch-backward)))
+
+(use-package adoc-mode
+  :ensure t
+  :mode ("\\.asciidoc\\'" "\\.adoc\\'"))
+
+(use-package go-mode
+  :config
+  (defun im-go-mode-hook ()
+	(setq tab-width 4)
+	(setq compile-command "go build -v"))
+  :bind (("M-." . godef-jump)
+		 ("M-*" . pop-tag-mark))
+  :ensure t
+  :mode ("\\.go\\'")
+  :hook (im-go-mode
+		 (before-save . gofmt-before-save))
+  )
