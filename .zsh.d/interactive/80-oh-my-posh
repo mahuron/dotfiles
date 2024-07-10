@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+
+alias omp=oh-my-posh
+
+eval "$(oh-my-posh init --config ~/.config/oh-my-posh/mahuron.yaml zsh)"
+

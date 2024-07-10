@@ -1,0 +1,4 @@
+# -*- mode: sh; -*-
+dot() {
+    git --git-dir=${CONFIGDIR} --work-tree=${HOME} $*
+}
