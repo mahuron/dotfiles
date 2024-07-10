@@ -1,4 +1,0 @@
-# -*- mode: sh; -*-
-
-export CONFIGDIR=${HOME}/.cfg
-

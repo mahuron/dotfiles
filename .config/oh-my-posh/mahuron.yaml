@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 2
+console_title_template: "{{if .Root}}(Admin){{end}} {{.PWD}}"
+transient_prompt:
+  foreground: "magenta"
+  template: "❯ "
+blocks:
+- type: prompt # username and path
+  alignment: left
+  segments:
+  - foreground: "#BF616A"
+    style: plain
+    template: "{{ .UserName }} "
+    type: session
+  - foreground: "#81A1C1"
+    properties:
+      style: full
+    style: plain
+    template: "{{ .Path }} "
+    type: path
+- type: prompt # git
+  alignment: left
+  segments:
+  - type: git
+    style: plain
+    properties:
+      branch_ahead_icon: "<#88C0D0>⇡ </>"
+      branch_behind_icon: "<#88C0D0>⇣ </>"
+      branch_icon: ' '
+      # github_icon: ' '
+      github_icon: ''
+      fetch_status: true
+      fetch_upstream_icon: true
+      fetch_stash_count: true
+    foreground: "white"
+    template: "{{ .UpstreamIcon }}{{ .HEAD }}
+      {{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}
+      {{ if .Working.Changed }}<red>*</>{{ .Working.String }}{{ end }}
+      {{ if .Staging.Changed }} {{ .Staging.String }}{{ end }}
+      {{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }} "
+- type: prompt # execution time
+  alignment: left
+  segments:
+  - type: executiontime
+    style: plain
+    properties:
+      style: austin
+    foreground: "green"
+    template: " {{ .FormattedMs }} "
+- type: prompt # exit status
+  alignment: left
+  newline: true
+  segments:
+  - type: status
+    properties:
+      always_enabled: true
+    style: plain
+    foreground: "magenta"
+    foreground_templates:
+    - "{{ if gt .Code 0 }}red{{ end }}"
+    template: "❯ "

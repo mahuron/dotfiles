@@ -1,0 +1,5 @@
+# -*- mode: sh; -*-
+
+typeset -xTU PATH path
+
+path=(~/.local/bin $path)
